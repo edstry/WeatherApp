@@ -1,4 +1,4 @@
-package com.edstry.weatherapp.ui.theme
+package com.edstry.weatherapp.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
