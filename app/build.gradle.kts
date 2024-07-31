@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.mvikotlin.core)
     implementation(libs.mvikotlin.coroutines)
     implementation(libs.mvikotlin.main)
+    implementation(libs.mvikotlin.logging)
     /// decompose
     implementation(libs.decompose.core)
     implementation(libs.decompose.jetpack)
@@ -89,6 +90,7 @@ dependencies {
     /// retrofit
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gsonConverter)
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
     /// icons material
     implementation(libs.icons)
 }

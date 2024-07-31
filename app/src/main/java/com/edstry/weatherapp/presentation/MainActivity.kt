@@ -12,27 +12,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.arkivanov.decompose.defaultComponentContext
+import com.edstry.weatherapp.WeatherApp
 import com.edstry.weatherapp.data.network.api.ApiFactory
+import com.edstry.weatherapp.domain.usecase.ChangeFavouriteStateUseCase
+import com.edstry.weatherapp.domain.usecase.SearchCityUseCase
+import com.edstry.weatherapp.presentation.root.DefaultRootComponent
+import com.edstry.weatherapp.presentation.root.RootContent
 import com.edstry.weatherapp.presentation.ui.theme.WeatherAppTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var rootComponentFactory: DefaultRootComponent.Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
-        val apiService = ApiFactory.apiService
-        CoroutineScope(Dispatchers.Main).launch {
-            val currentWeather = apiService.loadCurrentWeather("London")
-            val forecast = apiService.loadForecast("London")
-            val cities = apiService.searchCity("London")
-            Log.d("MainActivity", "Current Weather $currentWeather \n Forecast Weather $forecast \n Cities $cities \n")
-        }
+        (applicationContext as WeatherApp).applicationComponent.inject(this)
         setContent {
-            WeatherAppTheme {
-
-            }
+            RootContent(component = rootComponentFactory.create(defaultComponentContext()))
         }
     }
 }

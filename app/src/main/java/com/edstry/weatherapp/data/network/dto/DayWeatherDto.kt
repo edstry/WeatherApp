@@ -7,15 +7,15 @@ import com.google.gson.annotations.SerializedName
 
 data class WeatherForecastDto(
     @SerializedName("current") val current: WeatherDto,
-    @SerializedName("forecast") val forecastDto: ForecastDto,
+    @SerializedName("forecast") val forecastDto: ForecastDto
 )
 
 data class ForecastDto(
-    @SerializedName("forecast") val forecastDay: List<DayDto>,
+    @SerializedName("forecastday") val forecastDay: List<DayDto>,
 )
 data class DayDto(
     @SerializedName("date_epoch") val date: Long,
-    @SerializedName("condition") val dayWeatherDto: DayWeatherDto
+    @SerializedName("day") val dayWeatherDto: DayWeatherDto
 )
 data class DayWeatherDto(
     @SerializedName("avgtemp_c") val tempC: Float,
